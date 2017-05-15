@@ -7,11 +7,44 @@
 //
 
 import UIKit
+import CoreData
 
 class AddAreaController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    var area: AreaMO!
+    var isVisited = false
    
     @IBOutlet weak var coverImageView: UIImageView!
+    @IBAction func saveTag(_ sender: UIBarButtonItem) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        area = AreaMO(context: appDelegate.persistentContainer.viewContext)
+        area.name = tfName.text
+        area.province = tfProvince.text
+        area.part = tfPart.text
+        area.isVisited = isVisited
+        if let imageData = UIImageJPEGRepresentation(coverImageView.image!, 0.7) {
+            area.image = NSData(data: imageData)
+        }
+        print("saving")
+        appDelegate.saveContext()
+        
+        performSegue(withIdentifier: "unwindToHomeList", sender: self)
+    }
+    @IBOutlet weak var tfName: UITextField!
+    @IBOutlet weak var tfProvince: UITextField!
+    @IBOutlet weak var tfPart: UITextField!
+    @IBOutlet weak var labelVisited: UILabel!
+    @IBAction func isVisitedTag(_ sender: UIButton) {
+        if sender.tag == 8001 {
+            isVisited = true
+            labelVisited.text = "I have been here."
+        } else {
+            isVisited = false
+            labelVisited.text = "I have not been here."
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

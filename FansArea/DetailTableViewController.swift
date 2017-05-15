@@ -10,7 +10,7 @@ import UIKit
 
 class DetailTableViewController: UITableViewController {
     
-    var area : Area!
+    var area : AreaMO!
     var index : Int!
     @IBOutlet weak var ratingBtn: UIButton!
     @IBOutlet weak var LargeImageView: UIImageView!
@@ -18,8 +18,8 @@ class DetailTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        LargeImageView.image = UIImage(named: area.image)
-        ratingBtn.setImage(UIImage(named: area.rating.isEmpty ? "rating":area.rating), for: .normal)
+        LargeImageView.image = UIImage(data: area.image as! Data)
+        ratingBtn.setImage(UIImage(named: (area.rating != nil) ? area.rating!:"rating"), for: .normal)
         tableView.backgroundColor = UIColor(white: 0.98, alpha: 1)
         tableView.separatorColor = UIColor(white: 0.9, alpha: 1)
         tableView.tableFooterView = UIView(frame: CGRect.zero)

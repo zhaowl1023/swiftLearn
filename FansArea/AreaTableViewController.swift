@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreData
 
-class AreaTableViewController: UITableViewController {
+class AreaTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     /*
     var areas = [
     "area0", "area1", "area2","area3","area4","area5","area6","area7","area8","area9","area10"]
@@ -23,8 +24,8 @@ class AreaTableViewController: UITableViewController {
     "xinzhuang", "qilihe", "youxi", "chengxi", "baiyun", "shangjie", "nangang", "yaodu", "wuhou", "jinping", "furong"]
 
     var visited = [Bool](repeatElement(false, count: 11))
- */
-    
+    */
+    /*
     var areas = [Area(name: "Clementi Ave 3 Blk 462", province: "Singapore", part: "Singapore", image: "xinzhuang", isVisited: false),
     Area(name: "Clementi Ave 3 Blk 461", province: "province1", part: "place1", image: "qilihe", isVisited: false),
     Area(name: "Clementi Mrt Station", province: "province2", part: "place2", image: "youxi", isVisited: false),
@@ -36,13 +37,20 @@ class AreaTableViewController: UITableViewController {
     Area(name: "area8888888888888888888888888", province: "province8", part: "place8", image: "wuhou", isVisited: false),
     Area(name: "area999999999999999", province: "province9", part: "place9", image: "jinping", isVisited: false),
     Area(name: "area10", province: "province10", part: "place10", image: "furong", isVisited: false)]
+    */
+    var areas : [AreaMO] = []
+    var fc : NSFetchedResultsController<AreaMO>!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidLoad()
         self.navigationController?.navigationBar.barStyle = .black
+        
+        //fetchAllData()
+        //tableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -55,6 +63,63 @@ class AreaTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        //? self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        fetchAllData2()
+    }
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .delete:
+            tableView.deleteRows(at: [indexPath!], with: .automatic)
+        case .insert:
+            tableView.insertRows(at: [indexPath!], with: .automatic)
+        case .update:
+            tableView.reloadRows(at: [indexPath!], with: .automatic)
+        default:
+            tableView.reloadData()
+        }
+        
+        if let objects = controller.fetchedObjects {
+            areas = objects as! [AreaMO]
+        }
+    }
+    
+    func fetchAllData(){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        do{
+            areas = try appDelegate.persistentContainer.viewContext.fetch(AreaMO.fetchRequest())
+        } catch {
+            print(error)
+        }
+    }
+    
+    func fetchAllData2(){
+        let request: NSFetchRequest<AreaMO> = AreaMO.fetchRequest()
+        let sd = NSSortDescriptor(key: "name", ascending: true)
+        request.sortDescriptors = [sd]
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        fc = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        fc.delegate = self
+        
+        do{
+            try fc.performFetch()
+            if let object = fc.fetchedObjects {
+                areas = object
+            }
+        } catch {
+            print(error)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -142,7 +207,7 @@ class AreaTableViewController: UITableViewController {
         cell.nameLabel.text = areas[indexPath.row].name
         cell.provinceLabel.text = areas[indexPath.row].province
         cell.placeLabel.text = areas[indexPath.row].part
-        cell.thumbImageView.image = UIImage(named :areas[indexPath.row].image)
+        cell.thumbImageView.image = UIImage(data :areas[indexPath.row].image as! Data)
         cell.thumbImageView.layer.cornerRadius = cell.thumbImageView.frame.size.height/2
         cell.thumbImageView.clipsToBounds = true
         //if self.visited[indexPath.row] {
