@@ -131,6 +131,8 @@ class DetailTableViewController: UITableViewController {
             self.area.rating = rating
             self.ratingBtn.setImage(UIImage(named: rating), for: .normal)
         }
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.saveContext()
     }
 
 }

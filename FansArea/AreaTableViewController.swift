@@ -80,7 +80,7 @@ class AreaTableViewController: UITableViewController, NSFetchedResultsController
         case .delete:
             tableView.deleteRows(at: [indexPath!], with: .automatic)
         case .insert:
-            tableView.insertRows(at: [indexPath!], with: .automatic)
+            tableView.insertRows(at: [newIndexPath!], with: .automatic)
         case .update:
             tableView.reloadRows(at: [indexPath!], with: .automatic)
         default:
@@ -149,7 +149,12 @@ class AreaTableViewController: UITableViewController, NSFetchedResultsController
         let actionDelete = UITableViewRowAction(style: .destructive, title: "Delete") { (_, indexPath) in
             // Delete the row from the data source
             
-            self.areas.remove(at: indexPath.row)
+            //self.areas.remove(at: indexPath.row)
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            context.delete(self.fc.object(at: indexPath))
+            appDelegate.saveContext()
+            
             /*
             self.areaImages.remove(at: indexPath.row)
             self.provinces.remove(at: indexPath.row)
@@ -157,7 +162,7 @@ class AreaTableViewController: UITableViewController, NSFetchedResultsController
             self.visited.remove(at: indexPath.row)
             */
             
-            self.tableView.deleteRows(at: [indexPath], with: .fade)
+            //self.tableView.deleteRows(at: [indexPath], with: .fade)
             //tableView.reloadData()
         }
         
