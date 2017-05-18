@@ -21,6 +21,8 @@
 		48D9471F1EB44C8900AABF47 /* Area.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D9471E1EB44C8900AABF47 /* Area.swift */; };
 		48D947221EB59DCC00AABF47 /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D947211EB59DCC00AABF47 /* DetailTableViewController.swift */; };
 		48D947241EB5A3AD00AABF47 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D947231EB5A3AD00AABF47 /* DetailTableViewCell.swift */; };
+		48FEF8321ECE0144007C1720 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FEF8311ECE0144007C1720 /* ContentViewController.swift */; };
+		48FEF8341ECE0634007C1720 /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FEF8331ECE0634007C1720 /* GuideViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +43,8 @@
 		48D9471E1EB44C8900AABF47 /* Area.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Area.swift; sourceTree = "<group>"; };
 		48D947211EB59DCC00AABF47 /* DetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
 		48D947231EB5A3AD00AABF47 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
+		48FEF8311ECE0144007C1720 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		48FEF8331ECE0634007C1720 /* GuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +91,8 @@
 				484071D11EAD05150084E2D4 /* AppDelegate.swift */,
 				489D93FE1EC8BCF80036AAD6 /* FansArea.xcdatamodeld */,
 				484071D51EAD05150084E2D4 /* Main.storyboard */,
+				48FEF8331ECE0634007C1720 /* GuideViewController.swift */,
+				48FEF8311ECE0144007C1720 /* ContentViewController.swift */,
 				488215F51EC6EB4800E4BD42 /* AddAreaController.swift */,
 				482425221EBB6E55002D8B09 /* ReviewViewController.swift */,
 				48D947231EB5A3AD00AABF47 /* DetailTableViewCell.swift */,
@@ -185,9 +191,11 @@
 				488215F61EC6EB4800E4BD42 /* AddAreaController.swift in Sources */,
 				482425231EBB6E55002D8B09 /* ReviewViewController.swift in Sources */,
 				48D947221EB59DCC00AABF47 /* DetailTableViewController.swift in Sources */,
+				48FEF8341ECE0634007C1720 /* GuideViewController.swift in Sources */,
 				484071EE1EAD11930084E2D4 /* CustomTableViewCell.swift in Sources */,
 				489D94001EC8BCF80036AAD6 /* FansArea.xcdatamodeld in Sources */,
 				484071EA1EAD07770084E2D4 /* AreaTableViewController.swift in Sources */,
+				48FEF8321ECE0144007C1720 /* ContentViewController.swift in Sources */,
 				484071D21EAD05150084E2D4 /* AppDelegate.swift in Sources */,
 				48446A381EC2C143009138EC /* MapViewController.swift in Sources */,
 			);

@@ -566,7 +566,7 @@
         <!--Navigation Controller-->
         <scene sceneID="6Yj-U6-AQ8">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" hidesBarsOnSwipe="YES" id="Q4a-b8-GNR" sceneMemberID="viewController">
+                <navigationController extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" hidesBarsOnSwipe="YES" id="Q4a-b8-GNR" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="jqd-u9-v6N">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -580,6 +580,82 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PyK-wk-WwE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-174.375" y="95"/>
+        </scene>
+        <!--Guide View Controller-->
+        <scene sceneID="F3E-xE-LpE">
+            <objects>
+                <pageViewController storyboardIdentifier="GuideController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="3Ev-fM-DkE" customClass="GuideViewController" customModule="FansArea" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cs1-zV-QEL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-842" y="844"/>
+        </scene>
+        <!--Content View Controller-->
+        <scene sceneID="uVP-k2-3Z5">
+            <objects>
+                <viewController storyboardIdentifier="ContentController" id="LYY-t3-XZB" customClass="ContentViewController" customModule="FansArea" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rmh-M8-tDe"/>
+                        <viewControllerLayoutGuide type="bottom" id="F88-zx-2PD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Nd1-vh-QiA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swift 3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3J-ss-uuI">
+                                <rect key="frame" x="119" y="20" width="83" height="33.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YAF-L3-i8Q">
+                                <rect key="frame" x="0.0" y="96" width="320" height="288"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swife 3.1 语法适配，超人一步" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oy0-tb-IzW">
+                                <rect key="frame" x="46" y="419.5" width="228" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Nk9-od-QcO">
+                                <rect key="frame" x="141" y="443" width="39" height="37"/>
+                                <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="currentPageIndicatorTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </pageControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y0u-dj-pKT">
+                                <rect key="frame" x="131" y="387.5" width="57" height="30"/>
+                                <state key="normal" title="Try Now"/>
+                                <connections>
+                                    <action selector="doneBtnTap:" destination="LYY-t3-XZB" eventType="touchUpInside" id="jkA-c1-Ba6"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YAF-L3-i8Q" firstAttribute="centerX" secondItem="Nd1-vh-QiA" secondAttribute="centerX" id="01D-cn-cQC"/>
+                            <constraint firstItem="Y0u-dj-pKT" firstAttribute="centerX" secondItem="Nd1-vh-QiA" secondAttribute="centerX" id="073-J4-hpy"/>
+                            <constraint firstItem="Oy0-tb-IzW" firstAttribute="centerX" secondItem="Nd1-vh-QiA" secondAttribute="centerX" id="2Dg-EQ-96K"/>
+                            <constraint firstItem="YAF-L3-i8Q" firstAttribute="height" secondItem="Nd1-vh-QiA" secondAttribute="height" multiplier="0.6" id="3BJ-yj-eDR"/>
+                            <constraint firstItem="YAF-L3-i8Q" firstAttribute="centerY" secondItem="Nd1-vh-QiA" secondAttribute="centerY" id="Bt0-CQ-Dgn"/>
+                            <constraint firstItem="F88-zx-2PD" firstAttribute="top" secondItem="Oy0-tb-IzW" secondAttribute="bottom" constant="40" id="JQ8-sT-jkG"/>
+                            <constraint firstItem="Oy0-tb-IzW" firstAttribute="top" secondItem="Y0u-dj-pKT" secondAttribute="bottom" constant="2" id="bzs-hF-OXE"/>
+                            <constraint firstItem="W3J-ss-uuI" firstAttribute="top" secondItem="rmh-M8-tDe" secondAttribute="bottom" id="jSY-kw-peY"/>
+                            <constraint firstItem="W3J-ss-uuI" firstAttribute="centerX" secondItem="Nd1-vh-QiA" secondAttribute="centerX" id="ksc-VJ-ec7"/>
+                            <constraint firstItem="Nk9-od-QcO" firstAttribute="centerX" secondItem="Nd1-vh-QiA" secondAttribute="centerX" id="kyQ-NJ-03w"/>
+                            <constraint firstItem="YAF-L3-i8Q" firstAttribute="width" secondItem="Nd1-vh-QiA" secondAttribute="width" id="l70-7M-T5w"/>
+                            <constraint firstItem="F88-zx-2PD" firstAttribute="top" secondItem="Nk9-od-QcO" secondAttribute="bottom" id="prl-UO-1uo"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="btnDone" destination="Y0u-dj-pKT" id="78b-si-zty"/>
+                        <outlet property="imageView" destination="YAF-L3-i8Q" id="rqA-5D-czN"/>
+                        <outlet property="labelFooter" destination="Oy0-tb-IzW" id="JTl-k4-scz"/>
+                        <outlet property="labelHeading" destination="W3J-ss-uuI" id="5k2-lX-qdT"/>
+                        <outlet property="pageControl" destination="Nk9-od-QcO" id="0Tx-Lf-An9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="baM-nm-aSJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-174.375" y="843.75"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Frj-yJ-OWz">

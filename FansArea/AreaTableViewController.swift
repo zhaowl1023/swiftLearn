@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class AreaTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+class AreaTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, UISearchResultsUpdating {
     /*
     var areas = [
     "area0", "area1", "area2","area3","area4","area5","area6","area7","area8","area9","area10"]
@@ -40,13 +40,37 @@ class AreaTableViewController: UITableViewController, NSFetchedResultsController
     */
     var areas : [AreaMO] = []
     var fc : NSFetchedResultsController<AreaMO>!
+    var sc : UISearchController!
+    var searchResults : [AreaMO] = []
+    
+    func searchFilter (text: String) {
+        searchResults = areas.filter({ (area) -> Bool in
+            return area.name!.localizedCaseInsensitiveContains(text)
+        })
+    }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
+    func updateSearchResults(for searchController: UISearchController) {
+        if var text = searchController.searchBar.text {
+            text = text.trimmingCharacters(in: .whitespaces)
+            searchFilter(text: text)
+            tableView.reloadData()
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidLoad()
+        
+        let defaults = UserDefaults.standard
+        if !defaults.bool(forKey: "GuideShow"){
+            if let pageVC = storyboard?.instantiateViewController(withIdentifier: "GuideController") as? GuideViewController {
+                present(pageVC, animated: true, completion: nil)
+            }
+        }
+        
         self.navigationController?.navigationBar.barStyle = .black
         
         //fetchAllData()
@@ -55,6 +79,17 @@ class AreaTableViewController: UITableViewController, NSFetchedResultsController
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        sc = UISearchController(searchResultsController: nil)
+        sc.searchResultsUpdater = self
+        tableView.tableHeaderView = sc.searchBar
+        sc.dimsBackgroundDuringPresentation = false
+        
+        //sc.searchBar.tintColor = UIColor.white
+        //sc.searchBar.barTintColor = UIColor.green
+        sc.searchBar.placeholder = "Type in the area name"
+        sc.searchBar.searchBarStyle = .minimal
+        
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
 
@@ -201,20 +236,26 @@ class AreaTableViewController: UITableViewController, NSFetchedResultsController
      */
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return areas.count
+        return sc.isActive ? searchResults.count : areas.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)as!CustomTableViewCell
 
+        let area = sc.isActive ? searchResults[indexPath.row] : areas[indexPath.row]
         // Configure the cell...
-        cell.nameLabel.text = areas[indexPath.row].name
-        cell.provinceLabel.text = areas[indexPath.row].province
-        cell.placeLabel.text = areas[indexPath.row].part
-        cell.thumbImageView.image = UIImage(data :areas[indexPath.row].image as! Data)
+        //cell.nameLabel.text = areas[indexPath.row].name
+        //cell.provinceLabel.text = areas[indexPath.row].province
+        //cell.placeLabel.text = areas[indexPath.row].part
+        //cell.thumbImageView.image = UIImage(data :areas[indexPath.row].image as! Data)
+        cell.nameLabel.text = area.name
+        cell.provinceLabel.text = area.province
+        cell.placeLabel.text = area.part
+        cell.thumbImageView.image = UIImage(data :area.image as! Data)
         cell.thumbImageView.layer.cornerRadius = cell.thumbImageView.frame.size.height/2
         cell.thumbImageView.clipsToBounds = true
+        
         //if self.visited[indexPath.row] {
         //   cell.accessoryType = .checkmark
         //}
@@ -263,13 +304,12 @@ class AreaTableViewController: UITableViewController, NSFetchedResultsController
     }
     */
 
-    /*
+    
     // Override to support conditional rearranging of the table view.
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
-        return true
+        return !sc.isActive
     }
-    */
     
     @IBAction func close (segue: UIStoryboardSegue) {
         
@@ -285,7 +325,8 @@ class AreaTableViewController: UITableViewController, NSFetchedResultsController
         // Pass the selected object to the new view controller.
         if segue.identifier == "showAreaDetail"{
             let dest = segue.destination as! DetailTableViewController
-            dest.area = areas[tableView.indexPathForSelectedRow!.row]
+            //dest.area = areas[tableView.indexPathForSelectedRow!.row]
+            dest.area = sc.isActive ? searchResults[tableView.indexPathForSelectedRow!.row] : areas[tableView.indexPathForSelectedRow!.row]
             dest.index = tableView.indexPathForSelectedRow!.row
         }
     }
