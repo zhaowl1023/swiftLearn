@@ -7,11 +7,17 @@
 //
 
 import UIKit
+import SafariServices
 
 class AboutTableViewController: UITableViewController {
+    
+    var sectionTitle = ["feedback","关注博客"]
+    var sectionContent = [["评分","意见反馈"],["网站","博客","学习路线"]]
+    var links = ["https://www.baidu.com/","https://www.google.com.sg/","https://translate.google.com/"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -29,23 +35,46 @@ class AboutTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return section == 0 ? 2 : 3
     }
 
-    /*
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sectionTitle[section]
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
-        // Configure the cell...
-
+        cell.textLabel?.text = sectionContent[indexPath.section][indexPath.row]
         return cell
     }
-    */
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 0:
+            if indexPath.row == 0 {
+              let urlString = "http://apple.com/itunes/charts/paid-apps"
+                if let url = URL(string: urlString) {
+                    UIApplication.shared.open(url)
+                }
+            } else {
+                performSegue(withIdentifier: "showWebView", sender: self)
+            }
+        case 1:
+            if let url = URL(string: links[indexPath.row]) {
+                let sfvc = SFSafariViewController(url: url)
+                present(sfvc, animated: true, completion: nil)
+            }
+        default: break
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
 
     /*
     // Override to support conditional editing of the table view.

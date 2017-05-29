@@ -563,6 +563,52 @@
             </objects>
             <point key="canvasLocation" x="2906.25" y="100"/>
         </scene>
+        <!--Found-->
+        <scene sceneID="FHs-jv-4KX">
+            <objects>
+                <tableViewController id="1gt-jN-Jom" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="IhI-R8-TMm">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="dD1-AJ-pMB">
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dD1-AJ-pMB" id="GVW-bQ-nEw">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="1gt-jN-Jom" id="9Pj-JY-KDn"/>
+                            <outlet property="delegate" destination="1gt-jN-Jom" id="bmi-c0-LPK"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Found" id="Lgc-bl-smj"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Fw-X4-Xil" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="823" y="-610"/>
+        </scene>
+        <!--Found-->
+        <scene sceneID="0c0-xT-zNx">
+            <objects>
+                <navigationController id="M12-aP-0zV" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Found" image="discover" id="QWk-h8-RcW"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Epg-rL-duw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="1gt-jN-Jom" kind="relationship" relationship="rootViewController" id="muD-Me-c38"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="md8-7k-hvG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="26" y="-610"/>
+        </scene>
         <!--Favorite-->
         <scene sceneID="6Yj-U6-AQ8">
             <objects>
@@ -588,7 +634,7 @@
                 <pageViewController storyboardIdentifier="GuideController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="3Ev-fM-DkE" customClass="GuideViewController" customModule="FansArea" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cs1-zV-QEL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-849" y="1036"/>
+            <point key="canvasLocation" x="-842" y="844"/>
         </scene>
         <!--Content View Controller-->
         <scene sceneID="uVP-k2-3Z5">
@@ -656,7 +702,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="baM-nm-aSJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-189" y="1035"/>
+            <point key="canvasLocation" x="-174.375" y="843.75"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Frj-yJ-OWz">
@@ -687,7 +733,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="Q4a-b8-GNR" kind="relationship" relationship="viewControllers" id="Zdd-tU-ihz"/>
-                        <segue destination="KiO-dt-fYG" kind="relationship" relationship="viewControllers" id="Gg0-pZ-6VA"/>
+                        <segue destination="M12-aP-0zV" kind="relationship" relationship="viewControllers" id="Gg0-pZ-6VA"/>
                         <segue destination="bMu-Ue-oUD" kind="relationship" relationship="viewControllers" id="SKa-h8-Olz"/>
                     </connections>
                 </tabBarController>
@@ -703,22 +749,13 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NH7-yv-3RZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="97" y="613"/>
-        </scene>
-        <!--Found-->
-        <scene sceneID="Sj8-GS-Jj4">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Found" id="KiO-dt-fYG" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="1mh-t9-xlv"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZNz-wV-ZUs" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-105" y="613"/>
+            <point key="canvasLocation" x="24" y="-1319"/>
         </scene>
     </scenes>
     <resources>
         <image name="baiyun" width="200" height="200"/>
         <image name="close" width="64" height="64"/>
+        <image name="discover" width="25" height="25"/>
         <image name="dislike" width="64" height="64"/>
         <image name="favorite" width="25" height="25"/>
         <image name="good" width="128" height="128"/>

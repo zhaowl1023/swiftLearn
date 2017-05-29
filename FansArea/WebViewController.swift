@@ -7,11 +7,25 @@
 //
 
 import UIKit
+import WebKit
 
 class WebViewController: UIViewController {
 
+    @IBOutlet weak var webView: UIWebView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        webView.isHidden = true
+        let wkWebview = WKWebView(frame: view.frame)
+        view.addSubview(wkWebview)
+        
+        wkWebview.autoresizingMask = [.flexibleHeight]
+        
+        if let url = URL(string: "https://www.google.com.sg/") {
+            let request = URLRequest(url: url)
+            //webView.loadRequest(request)
+            wkWebview.load(request)
+        }
 
         // Do any additional setup after loading the view.
     }

@@ -27,6 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 NSForegroundColorAttributeName: UIColor.white
             ]
         }
+        
+        //UITabBar.appearance().tintColor = UIColor(red: 0/255, green:128/255, blue:255/255, alpha: 1)
+        UITabBar.appearance().barTintColor = UIColor.white
+        
         return true
     }
 
